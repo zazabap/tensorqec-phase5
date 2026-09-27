@@ -1,0 +1,8 @@
+[[72,12,6]] check: nq=72, ns=64, k=12
+
+TNMMAP compile time: 56.2s
+
+TNMMAP contraction complexity: time ≈ 2^84.00, space ≈ 2^69.00
+
+Skipping actual contraction: infeasible exact memory/space (as expected).
+

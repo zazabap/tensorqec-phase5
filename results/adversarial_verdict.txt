@@ -1,0 +1,28 @@
+ADVERSARIAL VERIFICATION — TensorQEC TableDecoder bug
+================================================================
+
+[Test A] Mechanism: decode ALL weight-1 errors with both tables
+  built-in  table mis-decodes: 2/27  -> X1, Y1
+  corrected table mis-decodes: 0/27
+  stored built-in entries for qubit-1 errors (evidence of qubit-1-clean replacement):
+    X1: built-in X:[2, 3] Z:Int64[] | corrected X:[1] Z:Int64[]
+    Y1: built-in X:[2, 3] Z:[2] | corrected X:[1] Z:[1]
+    Z1: built-in X:Int64[] Z:[2] | corrected X:Int64[] Z:[1]
+  Verdict: mis-decodes must be a subset of {X1,Y1,Z1} and corrected must be clean
+  Test A PASSES (refined mechanism fully explains the observed set [X1, Y1])
+
+[Test B] Statistics: p=0.03, 6000 samples, built-in vs corrected vs TNMMAP
+  built-in  FER = 0.03167 (190)
+  corrected FER = 0.01317 (79)
+  TNMMAP    FER = 0.01300 (78)
+  z(builtin vs corrected) = 6.86  (claim: |z| >> 3)
+  z(corrected vs TNMMAP)  = 0.08  (claim: |z| < 3, i.e. no significant gap)
+  Test B PASSES
+
+[Test C] Source: is the buggy line present in the installed package?
+  checked file: /home/zazabap/.julia/packages/TensorQEC/CegI0/src/decoding/truthtable.jl
+  line 'qubit_num = length(cep[1])' present: true
+  Test C PASSES
+
+================================================================
+FINAL VERDICT: bug claim CONFIRMED (survived all falsification attempts)
